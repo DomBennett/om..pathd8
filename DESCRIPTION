@@ -10,3 +10,4 @@ Imports:
     outsider.base
 Suggests:
     outsider
+RoxygenNote: 6.1.1
