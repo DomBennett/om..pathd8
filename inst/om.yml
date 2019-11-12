@@ -1,0 +1,12 @@
+# descriptive name of the program
+# (The explicit name of the program is determined from the R package name
+#  specified in the DESCRIPTION.)
+program: pathd8
+# any details about the program
+details: TODO write a detailed description advertising what this module does!
+    Note, newlines should be followed by four spaces.
+# the dockerhub username (optional)
+docker: dombennett
+# repo information (optional)
+github: dombennett
+url: https://github.com/dombennett/om..pathd8
