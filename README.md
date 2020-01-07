@@ -8,4 +8,10 @@ module_install(repo = "dombennett/om..pathd8")
 module_help(repo = "dombennett/om..pathd8")
 ```
 
-See [`outsider`](https://github.com/AntonelliLab/outsider) documentation for more information.
+---
+
+<img align="left" width="120" height="125" src="https://raw.githubusercontent.com/AntonelliLab/outsider/master/logo.png">
+
+**An `outsider` module**
+
+Learn more at [outsider website](https://antonellilab.github.io/outsider/). Want to build your own module? Check out [`outsider.devtools` website](https://antonellilab.github.io/outsider.devtools/).
