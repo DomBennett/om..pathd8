@@ -1,0 +1,122 @@
+---
+output: github_document
+---
+<!--
+README should be used to describe the program. Edit README.Rmd
+not README.md. The .Rmd file can be knitted to parse real-code examples and
+show their output in the .md file.
+
+To knit, use devtools::build_readme() or outsider.devtools::build()
+
+Edit the template to describe your program: how to install, import and run;
+run exemplary, small demonstrations; present key arguments; provide links and
+references to the program that the module wraps.
+
+Learn more about markdown and Rmarkdown:
+https://daringfireball.net/projects/markdown/syntax
+https://rmarkdown.rstudio.com/
+-->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# Run [`pathd8`](https://www2.math.su.se/PATHd8/) with `outsider` in R
+[![Build Status](https://travis-ci.org/dombennett/om..pathd8.svg?branch=master)](https://travis-ci.org/dombennett/om..pathd8)
+
+> Date phylogenetic trees without a molecular clock.
+
+
+<!-- Install information -->
+## Install and look up help
+
+```{r install-snippet, eval=TRUE, include=TRUE}
+library(outsider)
+module_install(repo = "dombennett/om..pathd8")
+# module_help(repo = "dombennett/om..pathd8")
+```
+
+<!-- Detailed examples -->
+## Detailed example
+
+<!-- Note: set eval=TRUE to run example and show output -->
+```{r detailed-example, eval=TRUE, include=TRUE}
+library(outsider)
+pathd8 <- module_import('pathd8', repo = 'dombennett/om..pathd8')
+# Taken from manual
+# https://www2.math.su.se/PATHd8/PATHd8manual.pdf
+input_text <- "
+Sequence length = 1823;
+
+((((Rat:0.007148,Human:0.001808):0.024345,Platypus:0.016588):0.012920,(Ostrich:0.018119,Alligator:0.006232):0.004708):0.028037,Frog:0);
+
+mrca: Rat, Ostrich, minage=260;
+mrca: Human, Platypus, fixage=125;
+mrca: Alligator, Ostrich, minage=150;
+name of mrca: Platypus, Rat, name=crown_mammals;
+name of mrca: Human, Rat, name=crown_placentals;
+name of mrca: Ostrich, Alligator, name=crown_Archosaurs;
+
+# my own notes, not executed by PATHd8
+# fossil Archosaurus minage=260
+# fossil Archaeopteryx minage=150
+# fossil Eomaia minage=125
+"
+
+# write out input file as binary
+input_file <- file.path(tempdir(), 'pathd8_input.txt')
+input_connection <- file(input_file, 'wb')
+write(x = input_text, file = input_connection)
+close(input_connection)
+
+# run pathd8
+output_file <- file.path(tempdir(), 'pathd8_output.txt')
+pathd8(input_file = input_file, output_file = output_file)
+
+# check output
+cat(readLines(con = output_file), sep = '\n')
+
+# clean up
+file.remove(input_file)
+file.remove(output_file)
+```
+
+```{R uninstall, eval=TRUE, include=FALSE}
+module_uninstall(repo = 'dombennett/om..pathd8')
+```
+
+### Key arguments
+
+The `pathd8` function takes just two arguments: `input_file` which specifies
+the tree and the run parameters and `output_file` where the resulting tree is
+saved.
+
+## Links
+
+Find out more by visiting the [PATHD8 homepage](https://www2.math.su.se/PATHd8/)
+
+## Please cite
+
+* Estimating divergence times in large phylogenetic trees by Tom Britton, Cajsa
+Lisa Anderson, David Jacquet, Samuel Lundqvist and Kåre Bremer, found in
+*Systematic Biology* 56:5, pp 741 - 752 . (The abstract can be found
+[here](http://www.math.su.se/PATHd8/PATHd8-abstract.doc).)
+* Britton, T., B. Oxelman, A. Vinnersten, and K. Bremer. 2002. Phylogenetic
+dating with confidence intervals using mean path lengths. *Molecular
+Phylogenetics and Evolution* 24:58-65.
+* Bennett et al. (2020). outsider: Install and run programs, outside of R,
+inside of R. *Journal of Open Source Software*, In review
+
+
+<!-- Footer -->
+---
+
+<img align="left" width="120" height="125" src="https://raw.githubusercontent.com/AntonelliLab/outsider/master/logo.png">
+
+**An `outsider` module**
+
+Learn more at [outsider website](https://antonellilab.github.io/outsider/). Want to build your own module? Check out [`outsider.devtools` website](https://antonellilab.github.io/outsider.devtools/).
