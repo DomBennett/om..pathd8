@@ -184,11 +184,11 @@ review
 
 ## <!-- Footer -->
 
-<img align="left" width="120" height="125" src="https://raw.githubusercontent.com/AntonelliLab/outsider/master/logo.png">
+<img align="left" width="120" height="125" src="https://raw.githubusercontent.com/ropensci/outsider/master/logo.png">
 
 **An `outsider` module**
 
 Learn more at [outsider
-website](https://antonellilab.github.io/outsider/). Want to build your
+website](https://docs.ropensci.org/outsider/). Want to build your
 own module? Check out [`outsider.devtools`
-website](https://antonellilab.github.io/outsider.devtools/).
+website](https://docs.ropensci.org/outsider.devtools/).
